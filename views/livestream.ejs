@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Camera</title>
+</head>
+
+<body>
+    <h1>Live Stream Camera</h1>
+    <img id="image" alt="live stream video">
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io('http://192.168.0.102:8000');
+        socket.on('encoded_image', (data) => {
+            const imageEml = document.getElementById('image');
+            imageEml.src = `data:image/jpeg;base64, ${data}`;
+        });
+    </script>
+</body>
+
+</html>
